@@ -17,6 +17,7 @@ import argparse
 import sys
 import time
 from typing import Iterable
+from pathlib import Path
 
 try:
     from pyftdi.spi import SpiController
@@ -24,6 +25,12 @@ except Exception as exc:  # pragma: no cover
     print(f"Failed to import pyftdi: {exc}")
     print("Install with: pip install pyftdi")
     sys.exit(2)
+
+try:
+    from PIL import Image, ImageSequence
+except Exception:
+    Image = None
+    ImageSequence = None
 
 CMD_NO_UPDATE = 0x00
 CMD_ALL_CLEAR = 0x20
@@ -39,9 +46,31 @@ COLOR_MAGENTA = 0xA
 COLOR_YELLOW = 0xC
 COLOR_WHITE = 0xE
 
+PALETTE_RGB_TO_MIP4 = (
+    ((0, 0, 0), COLOR_BLACK),
+    ((0, 0, 255), COLOR_BLUE),
+    ((0, 255, 0), COLOR_GREEN),
+    ((0, 255, 255), COLOR_CYAN),
+    ((255, 0, 0), COLOR_RED),
+    ((255, 0, 255), COLOR_MAGENTA),
+    ((255, 255, 0), COLOR_YELLOW),
+    ((255, 255, 255), COLOR_WHITE),
+)
+
 
 def clamp(value: int, lo: int, hi: int) -> int:
     return max(lo, min(value, hi))
+
+
+def rgb_to_mip4(r: int, g: int, b: int) -> int:
+    best = COLOR_BLACK
+    best_dist = 1 << 62
+    for (pr, pg, pb), c in PALETTE_RGB_TO_MIP4:
+        dist = (r - pr) * (r - pr) + (g - pg) * (g - pg) + (b - pb) * (b - pb)
+        if dist < best_dist:
+            best_dist = dist
+            best = c
+    return best
 
 
 class FtdiGpioBus:
@@ -166,6 +195,7 @@ class MipDisplay:
         trace_spi: bool = False,
         trace_packets: int = 0,
         manual_cs: ManualCsDriver | None = None,
+        invert_colors: bool = False,
     ):
         if width % 2 != 0:
             raise ValueError("Width must be even for 4-bit packed pixels")
@@ -180,6 +210,11 @@ class MipDisplay:
         self.tx_packets = 0
         self.tx_bytes = 0
         self.manual_cs = manual_cs
+        self.invert_colors = invert_colors
+
+    @staticmethod
+    def _invert_nibble(color: int) -> int:
+        return (color ^ 0x0F) & 0x0F
 
     def _xfer(self, payload: bytes | bytearray) -> None:
         self.tx_packets += 1
@@ -206,13 +241,28 @@ class MipDisplay:
         self._cmd2(CMD_ALL_CLEAR | self.vcom)
 
     def fill(self, color: int) -> None:
+        if self.invert_colors:
+            color = self._invert_nibble(color)
         packed = ((color & 0x0F) << 4) | (color & 0x0F)
         self.fb[:] = bytes((packed,)) * len(self.fb)
+
+    def set_framebuffer(self, packed_fb: bytes | bytearray) -> None:
+        if len(packed_fb) != len(self.fb):
+            raise ValueError("Packed framebuffer size mismatch")
+        if self.invert_colors:
+            for i, value in enumerate(packed_fb):
+                hi = ((value >> 4) & 0x0F) ^ 0x0F
+                lo = (value & 0x0F) ^ 0x0F
+                self.fb[i] = (hi << 4) | lo
+        else:
+            self.fb[:] = packed_fb
 
     def set_pixel(self, x: int, y: int, color: int) -> None:
         if x < 0 or x >= self.w or y < 0 or y >= self.h:
             return
         idx = y * self.line_bytes + (x // 2)
+        if self.invert_colors:
+            color = self._invert_nibble(color)
         if (x & 1) == 0:
             self.fb[idx] = (self.fb[idx] & 0x0F) | ((color & 0x0F) << 4)
         else:
@@ -293,6 +343,49 @@ def draw_anim(display: MipDisplay, frame: int) -> None:
         display.set_pixel((i + frame) % display.w, i, COLOR_RED)
 
 
+def frame_image_to_packed(frame_image, width: int, height: int) -> bytearray:
+    resized = frame_image.convert("RGB").resize((width, height), resample=Image.NEAREST)
+    rgb_data = resized.tobytes()
+    line_bytes = width // 2
+    packed = bytearray(line_bytes * height)
+
+    src = 0
+    dst = 0
+    for _y in range(height):
+        for _x in range(0, width, 2):
+            r0, g0, b0 = rgb_data[src], rgb_data[src + 1], rgb_data[src + 2]
+            src += 3
+            r1, g1, b1 = rgb_data[src], rgb_data[src + 1], rgb_data[src + 2]
+            src += 3
+            c0 = rgb_to_mip4(r0, g0, b0)
+            c1 = rgb_to_mip4(r1, g1, b1)
+            packed[dst] = ((c0 & 0x0F) << 4) | (c1 & 0x0F)
+            dst += 1
+    return packed
+
+
+def load_gif_frames(path: str, width: int, height: int) -> tuple[list[bytearray], list[float]]:
+    if Image is None or ImageSequence is None:
+        raise SystemExit("GIF support requires Pillow. Install with: pip install pillow")
+    gif_path = Path(path)
+    if not gif_path.exists():
+        raise SystemExit(f"GIF file not found: {gif_path}")
+
+    packed_frames: list[bytearray] = []
+    delays_s: list[float] = []
+
+    with Image.open(gif_path) as image:
+        for frame in ImageSequence.Iterator(image):
+            packed_frames.append(frame_image_to_packed(frame, width, height))
+            delay_ms = frame.info.get("duration", image.info.get("duration", 100))
+            delays_s.append(max(0.02, float(delay_ms) / 1000.0))
+
+    if not packed_frames:
+        raise SystemExit(f"No frames found in GIF: {gif_path}")
+
+    return packed_frames, delays_s
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Drive JDI MIP display over Tigard/FTDI SPI")
     parser.add_argument("--url", default="ftdi://ftdi:2232h/1", help="PyFtdi URL (default: %(default)s)")
@@ -315,6 +408,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fps", type=float, default=5.0, help="Animation FPS")
     parser.add_argument("--frames", type=int, default=0, help="Animation frame count, 0 = forever")
     parser.add_argument("--pattern", choices=["bars", "checker", "anim"], default="anim")
+    parser.add_argument("--gif", type=str, default="", help="Path to GIF file to stream to display")
+    parser.add_argument(
+        "--gif-loops",
+        type=int,
+        default=0,
+        help="Number of GIF loops (0 = forever)",
+    )
+    parser.add_argument(
+        "--gif-fps",
+        type=float,
+        default=0.0,
+        help="Override GIF timing with fixed FPS (<=0 uses GIF frame durations)",
+    )
     parser.add_argument("--clear-first", action="store_true", help="Send panel clear command before drawing")
     parser.add_argument("--hold-seconds", type=float, default=10.0, help="Keep VCOM toggling after static draw")
     parser.add_argument(
@@ -334,6 +440,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--extcomin-period", type=float, default=0.5, help="EXTCOMIN toggle period in seconds")
     parser.add_argument("--extcomin-active-low", action="store_true", help="Drive EXTCOMIN as active-low")
     parser.add_argument("--trace-spi", action="store_true", help="Print SPI transfer summaries")
+    parser.add_argument("--invert-colors", action="store_true", help="Invert 4-bit panel colors before transmit")
     parser.add_argument(
         "--trace-packets",
         type=int,
@@ -470,7 +577,14 @@ def main() -> int:
         trace_spi=args.trace_spi,
         trace_packets=args.trace_packets,
         manual_cs=manual_cs,
+        invert_colors=args.invert_colors,
     )
+
+    gif_frames = None
+    gif_delays = None
+    if args.gif:
+        gif_frames, gif_delays = load_gif_frames(args.gif, args.width, args.height)
+        print(f"Loaded GIF frames: {len(gif_frames)} from {args.gif}")
 
     print(f"Connected: {args.url}, CS{args.cs}, {args.hz}Hz, mode{args.mode}")
     if manual_cs is not None:
@@ -483,6 +597,8 @@ def main() -> int:
         print(f"EXTCOMIN driven on FTDI GPIO bit {args.extcomin_bit}, period {args.extcomin_period:.3f}s")
     else:
         print("EXTCOMIN not enabled; using SPI VCOM keepalive/update commands")
+    if args.invert_colors:
+        print("Color inversion enabled")
 
     if args.verify_gpio:
         print("GPIO verify mode: SPI display data is NOT sent in this mode.")
@@ -509,7 +625,7 @@ def main() -> int:
 
     frame_delay = 1.0 / max(args.fps, 0.5)
 
-    if args.pattern in ("bars", "checker"):
+    if args.pattern in ("bars", "checker") and not gif_frames:
         if args.pattern == "bars":
             draw_bars(display)
         else:
@@ -532,6 +648,67 @@ def main() -> int:
         if disp is not None and not args.leave_disp_on:
             disp.set_enabled(False)
         ctrl.terminate()
+        return 0
+
+    if gif_frames:
+        frame = 0
+        gif_index = 0
+        loop_index = 0
+        max_frames = args.frames if args.frames > 0 else None
+        next_spi_vcom = time.monotonic() + 0.5
+        try:
+            while True:
+                if max_frames is not None and frame >= max_frames:
+                    break
+                if args.gif_loops > 0 and loop_index >= args.gif_loops:
+                    break
+
+                now = time.monotonic()
+                if extcomin is not None:
+                    display.vcom = 0
+                    extcomin.service(now)
+                else:
+                    if now >= next_spi_vcom:
+                        display.vcom = CMD_VCOM if display.vcom == 0 else 0
+                        next_spi_vcom = now + 0.5
+
+                display.set_framebuffer(gif_frames[gif_index])
+                display.refresh()
+                frame += 1
+
+                if args.gif_fps > 0:
+                    delay_s = 1.0 / max(args.gif_fps, 0.5)
+                else:
+                    delay_s = gif_delays[gif_index]
+
+                gif_index += 1
+                if gif_index >= len(gif_frames):
+                    gif_index = 0
+                    loop_index += 1
+
+                deadline = time.monotonic() + delay_s
+                while time.monotonic() < deadline:
+                    if extcomin is not None:
+                        extcomin.service(time.monotonic())
+                        time.sleep(0.01)
+                    else:
+                        now = time.monotonic()
+                        if now >= next_spi_vcom:
+                            display.toggle_vcom_keepalive()
+                            next_spi_vcom = now + 0.5
+                        time.sleep(0.01)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            if extcomin is not None:
+                extcomin.shutdown()
+            if manual_cs is not None:
+                manual_cs.deassert_cs()
+            if disp is not None and not args.leave_disp_on:
+                disp.set_enabled(False)
+            ctrl.terminate()
+
+        print(f"Sent {frame} GIF frames")
         return 0
 
     frame = 0

@@ -13,6 +13,12 @@ Install dependency:
 pip install pyftdi
 ```
 
+For GIF playback support:
+
+```bash
+pip install pillow
+```
+
 Make sure panel control pins are wired correctly for host-side test:
 
 - `SCLK`, `SI/MOSI`, `SCS` to Tigard SPI
@@ -60,5 +66,17 @@ Checkerboard on a different FTDI URL / dimensions:
 
 ```bash
 python tools/mip_tigard_demo.py --url ftdi://ftdi:2232h/2 --width 72 --height 144 --pattern checker
+```
+
+Play a GIF on the panel (auto-uses GIF frame timing):
+
+```bash
+python tools/mip_tigard_demo.py --url ftdi://ftdi:2232h/2 --gif reference/demo.gif --disp-bit 5
+```
+
+Play a GIF at fixed FPS and fixed loop count:
+
+```bash
+python tools/mip_tigard_demo.py --url ftdi://ftdi:2232h/2 --gif reference/demo.gif --gif-fps 8 --gif-loops 3 --disp-bit 5
 ```
 
