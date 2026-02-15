@@ -1,0 +1,1992 @@
+
+--- PAGE 1 ---
+仕様書パターン 2 CAS表紙
+Date : Feb. 15, 2018
+Ｄｏｃｕｍｅｎｔ　Ｎｏ．：JDG010000624-03
+Approval Signature
+Accepted  by : 
+Date : 
+Proposed  by : 
+JDG01-E-01E
+SPECIFICATIONS
+Product Name LPM009M360A
+To :                                            
+
+
+--- PAGE 2 ---
+Revision History 
+Issued No. JDG010000624 
+Revision 03 
+Product Name LPM009M360A 
+Customer 
+Part No.  
+Date/Rev. Contents of change Reasons Remarks 
+Jan.10,.2017 
+Rev.01 
+- - New Release - 
+LPM009M360A 
+（200067201） 
+Jun.28, 2017 
+Rev.02 
+C P .7 
+3.6 AC CHRACTERISTICS 
+tsSI (UNIT): usec ⇒ nsec 
+thSI (UNIT): usec ⇒ nsec 
+twSCLKH (UNIT): usec ⇒ nsec 
+twSCLKL (UNIT): usec ⇒ nsec 
+Correction of mistake 
+LPM009M360A 
+（200067201） 
+Feb.15, 2018 
+Rev.03 
+A P1 Additional sentences to BASIC 
+SPECIFICATIONS Addition 
+LPM009M360A 
+（200067201） 
+A P .22 Additional comment for Measurement 
+definition of reflectance. Addition 
+C P .27 Modified description in 10.1.3  
+Treatment of problem Modification 
+A P .28 Additional figure for Air Bubble 
+explanation Additoin 
+C P .30 
+ESD test condition modified: 
+V=1.0kV ⇒  ±1.0kV. 
+Modified description 11.2 Criteria 
+for judgment 
+Correction of mistake 
+A P .32 Note appended. Addition 
+      
+      
+      
+      
+      
+      
+(C): Changed     (A): Appended     (D): Deleted     (F): Filled in  
+
+--- PAGE 3 ---
+CONTENTS 
+ 
+1. BASIC SPECIFICATIONS ................................................................................................................................................... 1 
+1.1 STRUCTURES ............................................................................................................................................................... 1 
+1.2 BLOCK DIAGRAM .......................................................................................................................................................... 2 
+1.3 DISPLAY ADDRESS MAP AND PIXEL LAYOUT ........................................................................................................... 3 
+1.4 I/O PINS ......................................................................................................................................................................... 4 
+2. ABSOLUTE MAXIMUM RATINGS ...................................................................................................................................... 5 
+3. OPERATING CONDITIONS ................................................................................................................................................. 6 
+3.1 POWER SUPPLY VOLTAGE AND INPUT SIGNALS .................................................................................................... 6 
+4. ELECTRICAL CHARACTERISTICS .................................................................................................................................... 6 
+4.1 POWER CONSUMPTION............................................................................................................................................... 6 
+4.2 INPUT SIGNAL CHRACTERISTICS ............................................................................................................................... 7 
+4.3 POWER ON/OFF SEQUENCE ....................................................................................................................................... 8 
+5. MODE ................................................................................................................................................................................... 9 
+5.1 MODE TABLE ..................................................................................................................................................................... 9 
+5.2 MODE CHART .................................................................................................................................................................... 9 
+6. TIMING CHART AND DETAILS OF MODE ....................................................................................................................... 10 
+6.1 SINGLE LINE UPDATE MODE (3BIT-DATA MODE) .......................................................................................................... 10 
+6.2 MULTIPLE LINES UPDATE MODE (3BIT-DATA MODE) ............................................................................................................... 11 
+6.3 SINGLE LINE UPDATE MODE (1BIT-DATA MODE) .......................................................................................................... 12 
+6.4 MULTIPLE LINES UPDATE MODE (1BIT-DATA MODE) ................................................................................................... 13 
+6.5 SINGLE LINE UPDATE MODE (4BIT-DATA MODE) .......................................................................................................... 14 
+6.6 MULTIPLE LINES UPDATE MODE (4BIT-DATA MODE) ................................................................................................... 15 
+6.7 NO-UPDATE MODE ...................................................................................................................................................... 16 
+6.8 ALL CLEAR MODE ....................................................................................................................................................... 17 
+6.9 DISPLAY BLINKING COLOR MODE ............................................................................................................................ 18 
+6.10 DISPLAY COLOR INVERSION MODE ....................................................................................................................... 19 
+7. COM INVERSION .............................................................................................................................................................. 20 
+7.1 EXTCOMIN SIGNAL ..................................................................................................................................................... 20 
+8. GATE ADDRESS TABLE .................................................................................................................................................. 21 
+9. OPTICAL SPECIFICATION ............................................................................................................................................... 22 
+9.1 OPTICAL CHARACTERISTICS .................................................................................................................................... 22 
+9.2 DEFINITION AND CONDITION OF OPTICAL CHARACTERISTICS ............................................................................ 23 
+10. INSPECTION ................................................................................................................................................................... 26 
+10.1 QUALITY STANDARD ................................................................................................................................................ 26 
+10.2. DISPLAY APPEARANCE STANDARDS .................................................................................................................... 28 
+10.3. EXTERNAL APPEARANCE STANDARDS ................................................................................................................ 29 
+11. RELIABILITY TEST ......................................................................................................................................................... 30 
+11.1 CONDITIONS OF RELIABILITY AND MECHANICAL TEST ....................................................................................... 30 
+11.2 CRITERIA FOR JUDGEMENT .................................................................................................................................... 30 
+12. DESIGNATION OF LOT MARK ....................................................................................................................................... 31 
+12.1 LOT MARK .................................................................................................................................................................. 31 
+13. PACKING SPECIFICATIONS .......................................................................................................................................... 32 
+13.1 INNER CARTON ......................................................................................................................................................... 32 
+13.2 MASTER CARTON ..................................................................................................................................................... 33 
+14. LCD MODULE USAGE AND PRECAUTIONS ................................................................................................................ 34 
+14.1 HANDLING ................................................................................................................................................................. 34 
+14.2 DESIGN OF APPLICATION ........................................................................................................................................ 35 
+ 
+
+--- PAGE 4 ---
+CONTENTS 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+14.3 DISPLAY CHARACTERISTICS .................................................................................................................................. 35 
+14.4 KEEPING THE PRODUCTS ....................................................................................................................................... 36 
+14.5 DISPOSAL .................................................................................................................................................................. 36 
+14.6 OTHERS ..................................................................................................................................................................... 36 
+15. OUTLINE DRAWING ....................................................................................................................................................... 37 
+ 
+
+--- PAGE 5 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  1/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+1. BASIC SPECIFICATIONS 
+ 
+LPM009M360A is a 0.85 inch reflective active matrix liquid crystal display ( LCD).  
+The active area of the LCD has 72(h) x 144(v) pixels. 
+A pixel has a 1-bit static random-access memory (SRAM) to store the image data. 
+This display is a reflective LCD, therefore the specification is defined in reflective mode only unless otherwise specified in 
+the specification sheet. 
+ 
+1.1 STRUCTURES 
+ 
+No. FACTOR SPECIFICATIONS UNIT 
+1 LCD structure LTPS (Memory in Pixel type) - 
+2 Outward   *(1)  12.455(W) x 24.01(H) x 0.844(D)   (*1-1) mm 
+3 Weight Approx. 0.5 g 
+4 Screen size 21.59 (0.850inch)  mm 
+5 Resolution  72(H) x 144(V) dot 
+6 Dot pitch (Horizontal x Vertical) 0.0447(H) x 0.1341(V) mm 
+7 Dot layout RGB stripe - 
+8 Liquid crystal mode ECB normally black  (Reflective type)  - 
+9 Polarizer Hard Coat type (*Pencil Hardness : 2H) - 
+Note) 
+(*1-1) Excluding FPC and part of protruding. See attached drawing for details. 
+
+--- PAGE 6 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  2/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+1.2 BLOCK DIAGRAM 
+The block diagram of a panel is shown below. 
+ 
+1.2.1 Pin layout and Internal circuit 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   Viewing in front of a LCD panel 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 7 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  3/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+1.3 DISPLAY ADDRESS MAP AND PIXEL LAYOUT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Pixels indicated “RGB” are displayed 
+Number of active pixels: 72 x RGB x 144 dot 
+(Viewing in front of a LCD panel) 
+H1…72 X RGB : Horizontal line 
+V1...144 : Vertical line 
+ 
+ 
+ 
+
+
+--- PAGE 8 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  4/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+1.4 I/O PINS 
+ 
+PIN SYMBOL TYPE DESCRIPTION REMARK 
+1 SCLK I Serial Clock Signal  
+2 SI I Serial Input Signal  
+3 SCS I Chip Select Signal  
+4 EXTCOMIN I COM Inversion Polarity Input  
+5 DISP I Display ON/OFF Switching signal (*1-2) 
+6 VDD P Power Supply  
+7 NC NC Not connected to the LCD  
+8 VSS I Ground  
+P: Power supply    I: Input   NC: Not connected  
+Note) 
+(*1-2) ON/OFF switching is only for display. Data memory is kept at the time of ON/OFF. 
+    "H" : Data memory is displayed. 
+"L" : Black color is displayed with data memory kept. 
+ 
+External circuit example 
+ 
+ 
+ 
+
+
+--- PAGE 9 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  5/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+2. ABSOLUTE MAXIMUM RATINGS 
+                                                                      (VSS=0V) 
+PARAMETER RATINGS UNIT REMARKS 
+Power supply voltage 3.6 V  
+Input control signal voltage 0 to 3.6 V (*2-1) 
+Operating temperature range 
+(LCD panel surface) 
+-20 to +70 C (*2-2) 
+Storage temperature range -30 to +80 C (*2-2) 
+ 
+Note) 
+(*2-1) SCLK, SI, SCS, EXTCOMIN, DISP 
+(*2-1): Maximum humidity is defined as follows: 
+    Ta≦40C : 85%RH Max. 
+    Ta> 40C : Absolute humidity needs to be equal or less than the numeric value at the condition of Ta=40 C, 85%RH. 
+Don't condense dew. 
+
+--- PAGE 10 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  6/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+3. OPERATING CONDITIONS 
+3.1 POWER SUPPLY VOLTAGE AND INPUT SIGNALS 
+                                                                                   
+PARAMETER SYMBOL Min. Typ. Max. UNIT REMARK 
+Power supply voltage 
+VDD 2.7 3.0 3.3 V  
+VSS - 0 - V  
+Input signal voltage  High  VIH VDD-0.1 3.0 VDD V  
+Input signal voltage  Low  VIL VSS VSS VSS+0.1 V (*3-1) 
+ 
+Note) 
+(*3-1) SCLK, SI, SCS, EXTCOMIN, DISP 
+ 
+ 
+4. ELECTRICAL CHARACTERISTICS 
+4.1 POWER CONSUMPTION 
+* Ta=25ºC, Driving Condition: VDD=3.0V, VIH=3.0V, VIL=0V, Data update frequency=1Hz, COM frequency=0.5Hz 
+Mode Display Min. Typ. Max. UNIT Remark 
+No-update mode White raster - 2 60 uW  
+Data-update mode White raster - 7 67 uW 3bit all lines data 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 11 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  7/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+4.2 INPUT SIGNAL CHRACTERISTICS 
+* Ta=25ºC, Driving Condition: VDD=3.0V, VIH=3.0V, VIL=0V 
+PARAMETER SYMBOL Min. Typ. Max. UNIT REMARK 
+Clock frequency fSCLK - 1.00 2.00 MHz (*4-1) 
+COM frequency fCOM 0.50 - 70.00 Hz (*4-2) 
+SCS rising time trSCS - - 50 nsec  
+SCS falling time tfSCS - - 50 nsec  
+SCS Low width twSCSL 6.0 - - usec  
+SCS settling time tsSCS 6.0 - - usec  
+SCS holding time thSCS 2.0 - - usec (*4-3) 
+SI rising time trSI - - 50 nsec  
+SI falling time tfSI - - 50 nsec  
+SI settling time tsSI 200 450 - nsec  
+SI holding time thSI 250 500 - nsec  
+SCLK rising time trSCLK - - 50 nsec  
+SCLK falling time tfSCLK - - 50 nsec  
+SCLK High width twSCLKH 250 500 - nsec (*4-4) 
+SCLK Low width twSCLKL 250 500 - nsec (*4-4) 
+EXTCOMIN frequency fEXTCOMIN 1.00 - 140.00 Hz (*4-2) 
+EXTCOMIN rising time trEXTCOMIN - - 50 nsec  
+EXTCOMIN falling time tfEXTCOMIN - - 50 nsec  
+EXTCOMIN High width twEXTCOMIN 2.0 - - usec  
+DISP rising time trDISP - - 50 nsec  
+DISP falling time tfDISP - - 50 nsec  
+Note) 
+(*4-1) Please note that Max. fSCLK may be lowered when VDD fall than 3.0V at a low temperature. 
+(*4-2) COM frequency should be around 60 Hz (EXTCOMIN frequency: around 120Hz) for transmissive mode. 
+    (*4-3) In case of data update mode in transmissive mode, thSCS should be 50 us or less.   
+    (*4-4) twSCLKH and twSCLKL should be approximately the same length, if possible 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+90%
+10%
+trSCS tsSCS
+90%
+10%
+trSI tsSI
+90%
+10%
+trSCLK
+90%
+10%
+tfSIthSI
+10%
+50%
+tfSCLK
+90%
+10%
+50%
+tfSCSthSCS
+50%50%
+twSCLKH twSCLKL
+50%
+50%
+twSCSL
+90%
+10%
+trEXTCOMIN
+10%
+50%
+tfEXTCOMIN
+50%50%
+twEXTCOMIN
+fEXTCOMIN
+SCS
+SI
+SCLK
+EXTCOMIN 90%
+10%
+trDISP
+10%
+DISP
+tfDISP
+
+--- PAGE 12 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  8/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+4.3 POWER ON/OFF SEQUENCE 
+ 
+(*4-6)
+(*4-6)
+(*4-6)
+VDD/VDDA
+DISP
+EXTCOMIN
+SCS
+SCLK/SI Normal Operation
+Normal Operation
+(*4-6) Normal Operation
+On sequence
+T1 T2 T3 T4
+Off sequence
+T5 T6 T7
+GND
+GND
+GND
+GND
+GND
+Normal operation
+(*4-5) (*4-5)
+ 
+     
+[On sequence] 
+T1: Power supply rising time. (Depends on external power supply) 
+T2: Pixel memory initialization. 1ms or more initialize with M2 (all clear flag). 
+T3: Release time for internal latch circuits. 30us or more 
+T4: COM polarity initialization time. 30us or more 
+ 
+[Normal operation] 
+Duration of normal operation 
+ 
+[Off sequence] 
+T5: Pixel memory initialization. Same as T2. 
+T6: COM and latch circuits initialization. 30us or mo re 
+T7: Power supply falling time. (Depends on external power supply) 
+ 
+ 
+Note) 
+Refer to the timing chart and electrical characteristics for details.  
+ 
+(*4-5) It is allowed to replace T3 and T4 mutually. 
+ In case of starting EXTCOMIN before rising DISP, EXTCOMIN is ignored during DISP=“L”. 
+ Also, it is allowed to start simultaneously DISP and EXTCOMIN. 
+ In that case, need 100us or more (200us or less) before normal operation.  
+(*4-6) Pixel memory initialization. 
+ Use M2 (all clear flag: refer to 6.8), 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 13 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  9/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+5. MODE 
+ 
+5.1 MODE TABLE 
+ Mode select             Unassigned bit and AG9-8: No care, it can be H or L (L is Recommended)  
+ 
+ 
+ 
+ 
+ 
+ 
+ Function table 
+ 
+ 
+ 
+ 
+Unassigned bit: No care, it can be H or L (L is Recommended)  
+ 
+5.2 MODE CHART 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 14 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  10/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+6. TIMING CHART AND DETAILS OF MODE 
+6.1 SINGLE LINE UPDATE MODE (3BIT-DATA MODE) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”. 
+M2: All clear flag. Set “L”, data update mode. 
+M3-M4: Data-bit control flag. In case of M3=“L” and M4=“L”, 3bit-data mode. 
+M5: Invalid data, it can be “H” or “L”. 
+ 
+AG9-AG0: Gate line address (10bit), refer to the Gate line address table.  
+ 
+Data: Pixel memory data. In case of “L”, pixel is black. 
+In case of 3bit-data mode,  
+input serially the pixel data in the order of Red-Green-Blue (3bit). 
+n: Number of horizontal line, refer to the Display address map  and Pixel layout. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+Need transfer period which is 16 clocks after the last data. 
+M0, M2 flags are cleared by SCS=“L”, and M3-M4 flags are cleared by DISP=“L”. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 15 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  11/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+6.2 MULTIPLE LINES UPDATE MODE (3BIT-DATA MODE) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”. 
+ M2: All clear flag. Set “L”, data update mode. 
+ M3-M4: Data-bit control flag. In case of  M3=“L” and M4=“L”, 3bit -data mode. 
+ M5: Invalid data, it can be “H” or “L”. 
+ 
+ AG9-AG0: Gate line address (10bit), refer to the Gate line address table.  
+ 
+ Data: Pixel memory data. In case of “L”, pixel is black. 
+  In case of 3bit-data mode,  
+  input serially the pixel data in the order of Red-Green-Blue (3bit). 
+n: Number of horizontal line, refer to the Display address map  and Pixel layout. 
+ 
+ Dummy data: It can be “H” or “L”. 
+ 
+ Input data continuously. 
+ m: Number of vertical line, refer to the Display address map and Pixel layout. 
+ 
+ Need transfer period which is 6 clocks between the gate line and the next gate line.  
+ Need transfer period which is 16 clocks after the last data. 
+ M0, M2 flags are cleared by SCS=“L”, and M3-M4 flags are cleared by DISP=“L”. 
+ 
+
+
+--- PAGE 16 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  12/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+6.3 SINGLE LINE UPDATE MODE (1BIT-DATA MODE) 
+ 
+        
+  
+      
+        
+ M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”. 
+ M2: All clear flag. Set “L”, data update mode. 
+ M3-M4: Data-bit control flag. In case of M3=“L” and M4=“H”, 1bit-data mode. 
+ M5: Invalid data, it can be “H” or “L”. 
+ 
+ AG9-AG0: Gate line address (10bit), refer to the Gate line address table.  
+ 
+ Data: Pixel memory data. In case of “L”, pixel is black. 
+   In case of 1bit-data mode, input the pixel data “H” or “L” (1bit). 
+   Pixel memories of red, green and blue are written the same data.  
+n: Number of horizontal line, refer to the Display address map  and Pixel layout. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+Need transfer period which is 16 clocks after the last data. 
+M0, M2 flags are cleared by SCS=“L”, and M3-M4 flags are cleared by DISP=“L”. 
+
+
+--- PAGE 17 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  13/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+6.4 MULTIPLE LINES UPDATE MODE (1BIT-DATA MODE) 
+ 
+ 
+ 
+M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”. 
+M2: All clear flag. Set “L”, data update mode. 
+M3-M4: Data-bit control flag. In case of M3=“L” and M4=“H”, 1bit-data mode. 
+M5: Invalid data, it can be “H” or “L”. 
+ 
+AG9-AG0: Gate line address (10bit), refer to the Gate line address table. 
+ 
+Data: Pixel memory data. In case of “L”, pixel is black. 
+In case of 1bit-data mode, input the pixel data “H” or “L” (1bit). 
+Pixel memories of red, green and blue are written the same data.  
+n: Number of horizontal line, refer to the Display address map and Pixel layout. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+Input data continuously. 
+m: Number of vertical line, refer to the Display address map and Pixel layout. 
+ 
+Need transfer period which is 6 clocks between the gate line and the next gate line.  
+Need transfer period which is 16 clocks after the last data. 
+M0, M2 flags are cleared by SCS=“L”, and M3-M4 flags are cleared by DISP=“L”. 
+ 
+ 
+
+
+--- PAGE 18 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  14/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+6.5 SINGLE LINE UPDATE MODE (4BIT-DATA MODE) 
+ 
+  
+ 
+ 
+M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”.  
+M2: All clear flag. Set “L”, data update mode. 
+M3: Data-bit control flag. In case of M3=“H”, 4bit-data mode. 
+M4-M5: Invalid data, it can be “H” or “L”. 
+ 
+AG9-AG0: Gate line address (10bit), refer to the Gate line address table. 
+ 
+Data: Pixel memory data. In case of “L”, pixel is black. 
+In case of 4bit-data mode,  
+input serially the pixel data in the order of Red-Green-Blue-Dummy (4bit). 
+Dummy data (DUM) can be “H” or “L”. 
+n: Number of horizontal line, refer to the Display address map and Pixel layout. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+Need transfer period which is 16 clocks after the last data. 
+M0, M2 flags are cleared by SCS=“L”, and M3 flag is cleared by DISP=“L”. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 19 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  15/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+6.6 MULTIPLE LINES UPDATE MODE (4BIT-DATA MODE) 
+ 
+ 
+ 
+M0: Mode flag. Set “H”, data update mode. 
+M1: Invalid data, it can be “H” or “L”. 
+M2: All clear flag. Set “L”, data update mode. 
+M3: Data-bit control flag. In case of M3=“H”, 4bit-data mode. 
+M4-M5: Invalid data, it can be “H” or “L”. 
+ 
+AG9-AG0: Gate line address (10bit), refer to the Gate line address table.  
+ 
+Data: Pixel memory data. In case of “L”, pixel is black. 
+In case of 4bit-data mode,  
+input serially the pixel data in the order of Red-Green-Blue-Dummy (4bit). 
+Dummy data (DUM) can be “H” or “L”. 
+n: Number of horizontal line, refer to the Display address map  and Pixel layout. 
+ 
+Dummy data : It can be “H” or “L”. 
+ 
+Input data continuously. 
+m: Number of horizontal line, refer to the Display address map  and Pixel layout. 
+ 
+Need transfer period which is 6 clocks between the gate line and the next gate line.  
+Need transfer period which is 16 clocks after the last data. 
+M0, M2 flags are cleared by SCS=“L”, and M3 flag is cleared by DISP=“L”. 
+ 
+
+
+--- PAGE 20 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  16/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+6.7 NO-UPDATE MODE 
+ 
+      
+ 
+M0: Mode flag. 
+M1: Invalid data, it can be “H” or “L”.  
+M2: All clear flag. 
+Set “L” or “H” to both M0 and M2, no-update mode. 
+M3: Blinking flag. In case of “L”, no-update mode and display blinking mode is terminated.  
+     In case of “H”, display blinking mode. Refer to 6.9 for details. 
+M4-M5: Invalid data, it can be “H” or “L”. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+M0, M2 flags are cleared by SCS=“L”, and M3 flag is cleared by DISP=“L”. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 21 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  17/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+6.8 ALL CLEAR MODE 
+ 
+ 
+ 
+     
+ 
+M0: Mode flag. Set “L”, no-update mode. 
+M1: Invalid data, it can be “H” or “L”.  
+M2: All clear flag. Set “H”, all clear mode. 
+M3: Blinking flag. In case of “L”, display blinking mode is terminated.  
+     In case of “H”, display blinking mode. Refer to 6.9 for details. 
+M4-M5: Blinking mode flag. In case of M3=“H”, validate. 
+     In case of M3=“L”, invalidate, it can be “H” or “L”. 
+ 
+Dummy data: It can be “H” or “L”. 
+ 
+M0, M2 flags are cleared by SCS=“L”, and M3-M4 flags are cleared by DISP=“L”. 
+ 
+Display gives priority to blinking flag (M3). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 22 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  18/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+6.9 DISPLAY BLINKING COLOR MODE 
+ 
+ 
+ 
+      
+ 
+M0: Mode flag. Set “L”, no-update mode. 
+M1: Invalid data, it can be “H” or “L”.  
+M2: All clear flag. Set “L”, no-update mode. 
+In case of “H”, all clear mode. Refer to 6.8 for details. 
+M3: Blinking flag. In case of “H”, display blinking mode and forcibly display blinking color.  
+In case of “L”, no-update mode and display blinking mode is terminated.  
+M4: Blinking color flag. Apply to display blinking color.  
+In case of “H”, display blinking color is white.  
+In case of “L”, display blinking color is black.  
+M5: Blinking inversion flag. Set “L”, blinking color mode.  
+ 
+Dummy data: It can be “H” or “L”. 
+M0, M2 flags are cleared by SCS=“L”, and M3-M5 flags are cleared by DISP=“L”. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 23 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  19/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+6.10 DISPLAY COLOR INVERSION MODE 
+ 
+ 
+ 
+      
+ 
+M0: Mode flag. Set “L”, no-update mode. 
+M1: Invalid data, it can be “H” or “L”.  
+M2: All clear flag. Set “L”, no-update mode. 
+In case of “H”, all clear mode. Refer to the 6.8 for details. 
+M3: Blinking flag. In case of “H”, display blinking mode and forcibly display color inversion.  
+In case of “L”, no-update mode and display blinking mode is terminated.  
+M4: Blinking color flag. In case of M5=“H”, invalidate, it can be “H” or “L”.  
+In case of M5=“L”, refer to 6.9 for details. 
+M5: Color inversion flag. Set “H”, display color is inverted. 
+For example, “Red” is changed to “Cyan”. 
+    “Cyan” is complementally color of “Red”. 
+ 
+Dummy data: It can be “H” or “L”. 
+M0, M2 flags are cleared by SCS=“L”, and M3,M5 flags are cleared by DISP=“L”. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 24 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  20/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+7. COM INVERSION 
+ 
+7.1 EXTCOMIN SIGNAL  
+ 
+ 
+ 
+COM polarity inversion has been changed by the rising timing of EXTCOMIN. 
+COM polarity (positive or negative) is controlled by internal circuit.  
+(*7-1) The periods of positive and negative polarity should be same length as much as possible.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(*7-1) (*7-1) 
+
+--- PAGE 25 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  21/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+8. GATE ADDRESS TABLE 
+LPM009M360A : Up to V144 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 26 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  22/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+9. OPTICAL SPECIFICATION 
+9.1 OPTICAL CHARACTERISTICS 
+9.1.1 Reflective mode 
+ 
+* Ta=25ºC  VDD=3.0V, VIH=3.0V, VIL=0V 
+Item Symbol Temp. 
+(C) 
+Rating Unit Definition 
+(Measurement setup) Remark 
+Min. Typ. Max. 
+Contrast CR 25 10 20 - - 1  
+Response 
+Tr 
+25 
+- 4 8 
+ms 2 
+Black  White 
+Td - 6 10 White  Black 
+Color 
+coordinates 
+Rx 
+25 
+- 0.516 - 
+- 3  
+Ry - 0.319 - 
+Gx - 0.310 - 
+Gy - 0.452 - 
+Bx - 0.165 - 
+By - 0.175 - 
+Wx - 0.325 - 
+Wy - 0.344 - 
+NTSC ratio - 25 16 23 - % 4  
+Reflectance - 25 17 25 - % 
+Basic measurement 
+conditions & 
+Measurement system 
+ 
+Viewing Angle 
+(CR>2) 
+θL 
+25 
+45 60 - 
+deg. 5 
+Horizontal 
+θR 50 65 - 
+θT 50 65 - 
+Vertical 
+θB 45 60 - 
+ 
+ 
+ 
+9.1.2 TRANSMISSIVE MODE 
+      * Ta=25ºC VDD=3.0V, VIH=3.0V, VIL=0V 
+Item Symbol Temp. 
+(C) 
+Rating Unit Definition 
+(Measurement setup) Remark 
+Min. Typ. Max. 
+Transmittance T 25 - 0.3 - % 6  
+ 
+* COM frequency should be around 60 Hz for transmissive mode.  
+ 
+ 
+ 
+
+--- PAGE 27 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  23/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+θ=0
+RightLeft
+Top
+Bottom
+θR
+θT
+θL
+θB
+*FPC side
+ 
+9.2 DEFINITION AND CONDITION OF OPTICAL CHARACTERISTICS 
+ 
+Definition 1 
+This is a ratio between the screen surface reflectance of the white raster and the black raster 
+ 
+ 
+ 
+ 
+Definition 2 
+  The response time is defined as the following figure and shall be measured by matching the input signal for “Black” 
+and “White”. 
+ 
+ 
+tr：Response time from Black to White  
+tf：Response time from White to Black 
+ 
+White 
+Black 
+tr 
+Brightness 
+tf 
+90% 
+10% 
+・Normally Black mode 
+Time 
+Definition 3 
+  This is the x-y coordinate of Red, Green, Blue and White colors specified on the CIE1931 chromaticity  
+  diagram.  (* It is not a guaranteed value)  
+ 
+Definition 4 
+This is an area of a triangle shaped by R, G and B coordinates on the CIE1931 chromaticity diagram.  
+ 
+Definition 5 
+This is a maximum angle θ from the normal direction that keeps having the contrast more than 2. 
+      
+Contrast ratio (CR) = 
+Reflection intensity on all pixels White 
+Reflection intensity on all pixels Black 
+*FPC side 
+Top 
+Bottom 
+Right Left 
+
+
+--- PAGE 28 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  24/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+Definition 6 
+Transmittance is defined by the result of measuring backlight provided by Japan Display Inc.  
+ 
+- Measurement method of optical characteristics – 
+ 
+< Basic measurement conditions > 
+a) Driving voltage 
+  VDD = 3.0V 
+ 
+b) Measurement temperature 
+  25C unless otherwise specified 
+ 
+c) Measurement point 
+  Center of the Active area (one point) unless otherwise specified  
+  
+d) Measurement equipment 
+  LCD-5200 or equivalent 
+ 
+f) Light source  
+   Parallel light source 
+           ・D65 / 2 degree viewing angle 
+        ・Light source input direction: from TOP side (30°) 
+           ・Light source receive direction: at LCD center (0 °) 
+ 
+ 
+< Measurement system> 
+ 
+Driving Circuit
+LCD Module
+30°
+LCD center
+Measurment 
+equipment
+Light source
+FPC side
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+30° 
+Light source 
+
+--- PAGE 29 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  25/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+< Measurement systemfor transmissive mode >  
+ 
+ 
+ 
+ 
+ 
+LCD Module 
+Receiver lens Optical fiber 
+Stage 
+A side 
+Measurement equipment 
+(CS-2000A or equivalent) 
+
+--- PAGE 30 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  26/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+Z
+X
+Y
+45゜
+45゜
+ 
+10. INSPECTION 
+10.1 QUALITY STANDARD 
+ 
+10.1.1 INSPECTION CONDITION 
+ 
+(1) Ambient Conditions 
+Temperature   : 25 ℃ (±5℃) 
+Humidity    : 60% (±20%) 
+Ambient Luminance : 1000 – 2000 lux 
+Supply Voltage   : VDD=3.0(V), VIH=3.0V, VIL=0V 
+(2) Viewing Distance 
+    The distance between the LCD and the inspector’s eyes should be 30cm ( ±10cm). 
+(3) Viewing Angle 
+    Viewing angle shall be ±45 degrees from the vertical direction as shown below.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+10.1.2 ZONE DEFINITION 
+A zone  : Active area 
+B zone  : except A zone 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+*For detail dimensions refer to outline drawing.  
+A zone(Red area) 
+B zone 
+
+
+--- PAGE 31 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  27/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+10.1.3 TREATMENT OF PROBLEMS 
+ 
+If there are any troubles which are concerned with our products assembled at your company ’s manufacturing  
+processes, both companies shall jointly investigate and resolve the cause.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 32 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  28/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+10.2. DISPLAY APPEARANCE STANDARDS 
+ 
+Item Zone Criteria Remark Name Cause Size(mm) N. 
+Dot type defect 
+B/W spot 
+(Dent in glass or  
+Upper polarizer, Particle, Swell) 
+Bright/Dark dot defect 
+A 
+D≦0.15 Ignore Keep two defect distance 
+more than 5mm 0.15＜D≦0.25 2 
+0.25＜D 0 
+B Ignore  
+Line type defect 
+Scratch on polarizer 
+or 
+Foreign material  
+between 
+Upper polarizer and glass 
+A 
+W≦0.03 Ignore Keep two defect distance 
+more than 5mm 0.03＜W≦0.08 , L≦2 2 
+0.08＜D or 2＜L 0 
+B Ignore  
+Air bubble Air bubble A 
+D2≦0.25 2 
+ 
+D1≦0.20 2 
+0.5＜D1+D2 0 
+B Ignore 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+      
+Aggregate of small air bubbles        
+Big air bubble  
+         
+*B zone defects other than the above are ignored when function / display is not affecte d  
+*When there is an agreement limit samples, Item is judged according to limit sample.  
+*Total defect quantity: A zone (N≦3) *each inspection (lighting / appearance) , B zone (N ≦5) 
+*Aggregate of small air bubbles: The longer one is  defined as D1 among Da and Db. 
+*Big air bubble: The longer one is defined as D2 among Da and Db.  
+*Cosmetic imperfection will be allowed outside the  A.A. (Active Area).  
+*Other items are to be decided by agreement between both parties.  
+ 
+Line type defect 
+Scratch
+L
+WDot type defect 
+b
+Spot
+a D = (a+b)/2
+Big air bubble 
+Aggregate of small air bubbles 
+
+--- PAGE 33 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  29/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+10.3. EXTERNAL APPEARANCE STANDARDS 
+ 
+Item Criteria Remarks Size(mm) Number 
+Chipping 
+(A) W≦3 , L≦0.2 , T=1/2t Ignore Fig 1 
+(B) W≦3 , L≦0.6 , T<1/2t Ignore Fig 2 
+Except (A) 0  
+Crack 
+W≦3.0 , L≦0.5 Ignore 
+V-shaped chipping included Fig3 
+3.0<W or 0.5<L 0 
+Chipping on the corner Showing on below figure  
+Projection 
+W≦0.3 , L≦5.0 Ignore 
+ 
+0.3<W or 5.0<L 0 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 34 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  30/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+11. RELIABILITY TEST 
+11.1 CONDITIONS OF RELIABILITY AND MECHANICAL TEST 
+ 
+No. TEST ITEM CONDITION REMARK 
+1 High Temperature Storage Ta=80℃ 240h  
+2 Low Temperature Storage Ta=-30℃ 240h  
+3 
+High Temperature & 
+High Humidity Storage 
+Ta=60℃／90%RH 
+（No condensation） 240h  
+4 
+High Temperature & 
+High Humidity Operation 
+Ta=40℃／90%RH 
+（No condensation） 240h  
+5 High Temperature Operation Ta=70℃ 240h  
+6 Low Temperature Operation Ta=-20℃ 240h  
+7 
+Thermal shock 
+(non-operating) 
+Ta=-20° to 70℃ 
+（30min each） 50cycles  
+8 ESD 
+HBM IEC 61340-3-1, 
+ESD STM5.1 
+V = ±1.0kV (Contact) 
+R = 1.5kΩ, C = 100pF 
+1 time each terminal  
+9 Packing Vibration 
+Random Vibration 
+5～500Hz 
+101min 
+Direction Z 
+(*11-1) 
+10 Packing Drop 
+Height 60cm,1 corner 
+3 edges,6 surfaces 
+1 time 
+Each direction 
+(*11-1) 
+ 
+Note) 
+(*11-1) Tests are done using conducted package.  
+Above test evaluate for development. It is not guaranteed value for lot acceptance.  
+If a nonconformance is found, both parties will have a discuss ion to solve it. 
+ 
+ 
+11.2 CRITERIA FOR JUDGMENT 
+ 
+ After the above tests, return samples to the normal temperature and moisture environment in the thermostat chamber   
+room over 30 minutes not to condense. Inspect samples kept for more than 1 hour after pulling them out of the   
+thermostat chamber room. 
+ 
+(1) There shall be no abnormality in the functions (Ex. No display, abnormal display, line defects).  
+ 
+(2) There shall be no serious degradation. (Ex. Brightness uniformity, reversible changes, optical changes due to   
+  polarizer are ignored.) 
+
+--- PAGE 35 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  31/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+12. DESIGNATION OF LOT MARK 
+12.1 LOT MARK  
+       Lot mark is printed on the FPC of the LCD module.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Year Figure in lot mark 
+2016 6 
+2017 7 
+2018 8 
+2019 9 
+2020 0 
+    
+ 
+ 
+Month Figure in lot mark Month Figure in lot mark 
+Jan. A July G 
+Feb. B Aug. H 
+Mar. C Sep. I 
+Apr. D Oct. J 
+May E Nov. K 
+June F Dec. L 
+Revision
+Manufacturing Date（Year,Month)
+Production base
+N Y M R R
+Production Lot number
+S S S S S S
+Printing Area 
+SSSSSS 
+NYMRR 
+Serial number 
+Identification of Assembly Factory 
+
+--- PAGE 36 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  32/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+13. PACKING SPECIFICATIONS 
+13.1 INNER CARTON 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+30pcs LCD modules per tray 
+10 trays with products + empty tray as cover = 11 trays 
+Stacked in an inner carton. 
+Inner carton 
+Empty Tray 
+Tray 
+Module 
+Bag 
+Note)  
+Tray orientation must be kept its original direction. 
+ 
+
+--- PAGE 37 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  33/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+(Notes) 
+Master carton size: W397 × L598 ×H227 (mm). 
+Gap is filled if necessary. 
+Tape is applied if necessary. 
+Tied if necessary. 
+Indication onto [A] [B] [C] [D] on master carton is shown as below 
+13.2 MASTER CARTON 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+Inner carton 
+Master carton 
+Insert four (4) inner cartons within a master carton. 
+Maximum quantity per a master carton: 30 × 10 × 4 = 1200pcs 
+  
+  
+  
+  
+  
+  
+  
+  
+<<Outer label>> 
+  [A] 
+  [C] 
+  [B] 
+  
+[D] 
+Outer label 
+200067201 
+LPM009M360A 
+200067201  1200 
+1200 
+
+--- PAGE 38 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  34/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+14. LCD MODULE USAGE AND PRECAUTIONS 
+14.1 HANDLING 
+ 
+(1) The display panel is made of glass. Do not subject it to mechanical shock such as dropping it from a high position, 
+etc.  
+(2) If the display panel is damaged and internal liquid crystal substance leaks out, b e sure not to inhale or consume it. 
+If the internal liquid crystal substance comes into contact with skin or clothing, promptly wash it off using soap and 
+running water.  
+(3) Do not apply excessive force on the surface, perimeter or adjoining areas of LCD module since this may cause 
+display panel color tone to vary.  
+(4) The polarizer covering the display panel surface of the LCD module is soft and can be easily scratched  or dented. 
+Handle this polarizer carefully.  
+(5) If the surface polarizer becomes contaminated, use the following recommended or equivalent adhesive tape for 
+contaminants removal.  
+• Scotch-brand mending tape (No. 810) 
+(6) Do not breathe on the display surface or use Ethyl Alcohol solvent for contaminant removal as polarizer 
+discoloration may occur. Furthermore, solvent other than mentioned above may also damage the polarizer.  
+Especially, do not use the followings.  
+• Water 
+• Ketones  
+• Aromatic solvents 
+(7) When mounting the LCD Module, be sure that it is free from twisting, warping, or di stortion. Any stress can have 
+great influence to the display quality. Also, in cases where outer case or frame is included, be sure to secure sufficient 
+stiffness on the outer case or frame for a robust design.  
+(8) Do not apply pressure at or around the FPC bonding area and the surrounding area. 
+(9) Do not attempt to disassemble or rework the LCD module.  
+(10) To prevent destruction of the elements by static electricity, be careful to maintain an optimum working 
+environment. 
+• Be sure to ground your body before handling the LCD module. 
+• Make sure that solder guns and all other tools required for assembly have been grounded.  
+• To reduce occurrence of static electricity, avoid using this product in dry environments.  
+• A protective film has been attached to the surface of the LCD panel. When peeling off the protective film, be careful 
+to prevent electrostatic discharges. 
+(11) To minimize performance degradation of the LCD module caused by destructive forces such as static electricity, 
+etc., avoid direct contact to the following sections when handling the LCD module. 
+• terminal electrodes of connector 
+• wiring pattern on FPC   
+(12) LCD Panel surface is protected by a protective film layer. This protective film must be  removed before final 
+product installation. After removal of protective film layer, some adhesive residues maybe left on the LCD panel,  
+especially after long storage period, please refer to section 5) listed above for proper  contaminant removal procedure. 
+(13) Take precaution to minimize corrosion of electrodes. Corrosion of electrodes is accelerated by moisture, 
+condensation or a current flow in a high-humidity environment.  
+(14) Do not apply excessive pressure to the FPC part. Force type such as twist, warp, etc., may damage FCP 
+patterning traces. 
+(15) Do not use sharp, pointy or rigid tools when handing LCD panels. These objects can scratch or nick the glass 
+panel which can cause it to crack. 
+
+--- PAGE 39 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  35/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+(16) Do not touch or handle the LCD module directly with bare hands. Residue of dirt, oil or water may have t he 
+possibility to cause corrosion. Be sure to wear finger sacks or gloves when handling LCD modules. When holding an 
+LCD panel module, carefully hold the panel by the edges of the glass plate.  
+(17) Avoid using LCD module under condensation or high humidity  environment because polarizer etc. maybe 
+damaged in these conditions. 
+(18) Trays are used to package LCD modules for shipment. If LCD modules scratch the tray during shipment, material 
+of the scratched tray may be left on LCD modules. In such case, clean up LCD modules after removal from trays. 
+(19) When installing LCD module, don't apply excess stress of bending or stretching to the input cable  
+(20) Keep NC terminal open electrically. 
+(21) After storage under high humidity or condensation environment, ke ep LCD module under room temperature more 
+than 30 minutes before operation. 
+(22) Take precautions to handling LCD module because the glass plate has very keen edges.  
+ 
+14.2 DESIGN OF APPLICATION 
+ 
+(1) The absolute maximum ratings represent the rated values w hich LCD module cannot exceed. When LCD modules 
+are used beyond this rated value, the operating characteristics may be adversely affected.  
+(2) To prevent the occurrence of erroneous operation caused by noise, special attention on satisfying VIL, VIH specif ied 
+values is required. This includes taking the precautionary measures of using short cables for signal transferring.  
+(3) An inherent characteristic of liquid crystal display is its temperature dependency. Be sure to use the LCD modules 
+within the specified operating temperature range, as recognition of the display becomes difficult when the LCD module is 
+used outside its range. Also, keep in mind that the  voltage levels necessary for clear display images will vary according 
+to temperature. 
+(4) It is recom mended that power supply lines (V DD) to include current surge protection. (Fuse etc. recommend value: 
+0.5A) 
+ (5) Note the peripheral devices can cause mutual noise interference with LCD modules. Especially, input devices such 
+as Touch Panel, etc., may output operational level by radiation noise even when these devices are not in operation. 
+Actual performance confirmation and verification under actual usage environment by actual final product is highly 
+recommended. 
+(6) To avoid EMI, preventive measures should be implemented in the final product.  
+(7) Display abnormality may occur with sudden removal of power supply such as device battery. Sudden removal of 
+power supply shall be avoided at all time. LCD module quality cannot be guaranteed under su ch condition. 
+(8) Ensure sufficient light shading measures during design phase and when assemble the LCD module.  
+(9) Ensure sufficient light shading measures in the inspection process.  
+(10) Similar to general electronic components, ESD may cause LCD IC to  malfunction. ESD preventive measures should 
+be considered around the LCD module. 
+(11) While display data may be kept, data can be easily changed by external noise. Noise shall be minimized at device 
+or system level. 
+(12) As unexpected noise may occur, per iodic refresh operation such as resend the command and  display data is highly 
+recommended as part of the software routine. 
+(13) When logic circuit power is off, do not apply any signals to the input terminals.  
+(14) Do not use other components such as FPC o r other features to fix the LCD module position, as pressure/tension 
+may produce undesired result such as FPC trace crack.  
+ 
+14.3 DISPLAY CHARACTERISTICS 
+ 
+(1) Because the optimum LCD driving voltage depends on the ambient temperature, display may slightly f licker at the 
+environment of high temperature. 
+(2) One of the special characteristics of liquid crystal is that it freezes when stored at the temperature below the 
+storage temperature range. Such freezing may cause orientation defects or bubbles (black or white) to appear in the 
+LCD panel. Bubbles may also occur if the panel receives an impact in a low -temperature environment. 
+(3) If the LCD module is left operating for a long time with the same display showing, the displayed pattern may leave 
+traces on the screen or the contrast may become inconsistent.  
+
+--- PAGE 40 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  36/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+14.4 KEEPING THE PRODUCTS 
+ 
+(1) When keeping LCD modules, avoid the following condition or environment.  
+• Exposure to direct sunlight or fluorescent lamps lightings. 
+• High-temperature/high-humidity or very low-temperature (below 0°C) environments. 
+• Exposure to water droplets, condensation, etc. 
+Furthermore, keep LCD modules in anti-static bags to prevent static electricity charge ups. Whenever possible, LCD 
+modules should be stored in the same  conditions in which they were shipped from Japan Display Inc. 
+(2) Take precaution to minimize corrosion of electrodes. Corrosion of electrodes is accelerated by moisture, 
+condensation or a current flow in a high-humidity environment. 
+(3) Recommended keeping conditions. 
+• Keeping environment: +15°C to 35°C, less than 65%RH 
+• Duration: up to 2 months after shipping date  
+(4) The shipping carton must not be stacked up over 1.5m in height.  
+ 
+14.5 DISPOSAL 
+ 
+(1) When disposing LCD modules, consult company specialized in indust rial waste treatment which is permitted by the 
+government or local authority.  When incineration is the method of LCD module disposal, law of environmental 
+hygienic must be obeyed. 
+ 
+14.6 OTHERS 
+ 
+(1) This product is designed to be used in ordinary electroni c devices. Do not use this product in other applications, 
+especially in devices that may cause direct bodily damage to end users (such as aerospace equipment, traffic  control 
+equipment, medical equipment, life-support system equipment, or safety equipment) . 
+(2) Japan Display Inc. shall not be responsible for defects that occur in this product or in equipment connected to  this 
+product if the product is used in an environment that exceeds the ranges specified in this document, or in  an 
+environment not described in this document. 
+ 
+ 
+
+--- PAGE 41 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  37/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+15. OUTLINE DRAWING 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+--- PAGE 42 ---
+Product Number:  LPM009M360A Revision Number: 03 Page:  38/38 
+ 
+ 
+Japan Display Inc. 
+ Confidential 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Note  1) Unit : mm  
+  2) General tolerance: +/-0.2 
+3) Scale: NTS 
+4) Unless otherwise specified, radius shall be R0.5. 
+       5) Example of suitable FPC connector: 10062827-0810EDLF (8pin / FCI) 
+C 
